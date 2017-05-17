@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas con Circulo y Cuadrado</title>
+    <link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
+    <link href="miEstilo.css" type="text/css" rel="stylesheet">
+    <script>
+
+        var bander = 0;
+
+        function paint(e) {
+            if (bander == 0)
+                return;
+
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            var x = e.offsetX * canvas.width / canvas.clientWidth;
+            var y = e.offsetY * canvas.height / canvas.clientHeight;
+
+            ctx.fillStyle = "#000";
+            ctx.fillRect(x, y, 10, 10);
+
+            console.log('entre' + e.offsetX + "" + e.offsetY)
+            }
+            function dato()
+            {
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+
+                console.log('');
+            }
+            function apreto() {
+                bander = 1;
+            }
+
+            function desapreto() {
+                bander = 0;
+            }
+    </script>
+</head>
+
+<body>
+<h1>Canvas paint</h1>
+<canvas width="900" height="500"
+        id="myCanvas" class="ejer"
+        onmousedown="apreto()"
+        onmouseup="desapreto()"
+        onclick="dato()" onmousemove="paint(event);">
+    Tu navegador no soporta el tag de HTML5 canvas.
+</canvas>
+
+</body>
+</html>
