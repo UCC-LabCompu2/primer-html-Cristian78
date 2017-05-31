@@ -161,19 +161,52 @@ function dibujarCuadriculado() {
 
 }
 
-function dibujarImagen(){
+function dibujarImagenCanvas() {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
+    var coorX,coorY;
 
-    var coorX = Number(document.getElementById("posicionX"));
-    var coorY = Number(document.getElementById("posicionY"));
+    coorX = Number(document.getElementById('posicionX').value);
+    coorY = Number(document.getElementById('posicionY').value);
+
+    canvas.width=canvas.width;
 
     var img = new Image();
     img.src = 'imagenes/auto.png';
+    ctx.drawImage(img, coorX, coorY);
+}
 
-    ctx.beginPath();
-    ctx.drawImage(img, coorX, coorY,30 ,30);
-    ctx.closePath();
+var coorX=0, coorY=400;
+var t;
+function dibujarImagenCanvasAnimacion() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
 
+    canvas.width = canvas.width;
 
+    coorX = Number(document.getElementById('posicionX').value);
+    coorY = Number(document.getElementById('posicionY').value);
+
+    canvas.width=canvas.width;
+
+    var img = new Image();
+    img.src = 'imagenes/auto.png';
+    ctx.drawImage(img, coorX, 600-127 +(-1 * coorY));
+}
+
+var velX= 25;
+var velY = 100;
+var int;
+function animar(){
+    var cant = 0;
+    setInterval(function(){
+        t+=0.1;
+        coorX = t +velX;
+        coorY = t +velY + 1/2 * t * t *9.8;
+        if (coorY<0)
+            clearInterval(int);
+        dibujarImagenCanvasAnimacion();
+        console.log("me llamaron" + cant + "veces")
+    }, 2000/60);
+    //setInterval(dibujarImagen, 3000)
 }
